@@ -121,10 +121,11 @@
             };
         }])
         .provider('initJson', function(){
+            var provider = this;
             this.nodeId = 'initJson';
             return {
                 $get : function() {
-                    var script = document.getElementById(this.nodeId);
+                    var script = document.getElementById(provider.nodeId);
                     if (! script) {
                         return {};
                     }
