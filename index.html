@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html ng-app="NpmSearchApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Node Packages</title>
+    <!--JS-->
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="/js/ng-helpers.js"></script>
+    <script type="text/javascript" src="/js/search.js"></script>
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+    <div class="screen" ng-controller="NpmSearchCtrl">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div>
+                        <h1 class="SearchApp-brand">
+                            <a href="#">Node Packages</a>
+                            <span class="SearchApp-keyword" ng-show="keyword"><small>#</small> {{group.name || keyword}}</span>
+                        </h1>
+                        <input
+                                name="query"
+                                type="text"
+                                class="SearchForm-query"
+                                placeholder="Search package"
+                                autofocus
+                                ng-model="query"
+                                ng-model-options="{debounce:500}"
+                                ng-change="search(query)"
+                                on-key="{enter:searchQuery}"
+                                on-key-events="keyup"
+                                />
+
+                    </div>
+                    <div class="SearchApp-indicator" ng-show="isLoading"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-9">
+                    <div ng-show="result.length">
+                        <h3>Results</h3>
+                        <ul class="list-unstyled SearchResults" on-last-scroll="loadMore()" last-scroll-for='result'>
+                            <li class="SearchResults-item" ng-repeat="npm in result">
+                                <div>
+                                    <a class="SearchResults-name" ng-bind="npm.name" href="{{npm.homepage}}"></a> <span class="help-word">v</span> {{npm.version}}
+                                    <div class="SearchResults-desc" ng-bind="npm.description"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <span class="help-word">by</span> <a class="SearchResults-author" href="http://npmjs.org/~{{npm.author}}">{{npm.author}}</a>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="SearchResults-keywords text-right" ng-show="npm.keywords.length">
+                                            <a class="SearchResults-keyword" href="#{{keyword}}" ng-repeat="keyword in npm.keywords track by $index" style="margin-right:0.5em;">{{keyword}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div ng-show="result.length < total" class="SearchSummary">
+                            <button class="btn btn-default" ng-click="loadMore()">Load more</button>
+                            <strong>{{result.length}}</strong>
+                            packages of
+                            <strong>{{total}}</strong>
+                            shown.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div ng-show="group">
+                        <h3 ng-bind="group.name"></h3>
+                        <p ng-bind="group.description"></p>
+                        <a href="{{group.website}}" class="Button">site</a>
+                        <a href="{{group.repo}}" class="Button">repo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="screen" id="thanks">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Thanks</h2>
+                    <p>
+                        Powered with <a href="http://npmsearch.com">npmsearch.com</a> by Solids.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script id="initJson" type="application/json">
+        {
+            "npmGroups":[{
+                "id" : "gulp",
+                "name":"Gulp",
+                "description":"Streaming build system",
+                "keywords":["gulpplugin"],
+                "website":"http://gulpjs.com",
+                "repo":"https://github.com/gulpjs/gulp/"
+            },{
+                "name":"Grunt",
+                "description":"The JavaScript task runner",
+                "keywords":["gruntplugin"],
+                "website":"http://gruntjs.com",
+                "repo":"https://github.com/grunt/grunt/"
+            }]
+        }
+    </script>
+</body>
+</html>

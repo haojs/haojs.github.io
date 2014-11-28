@@ -1,0 +1,157 @@
+/*
+    COMMON
+*/
+body, html {
+    height:100%;
+    min-height: 100%;
+}
+
+a {
+    color: #2b6;
+    transition: color 0.2s ease-in;
+}
+
+a:hover, a:active, a:focus {
+    color: #094;
+}
+
+.screen {
+    min-height: 100%;
+    box-sizing: border-box;
+}
+
+.help-word {
+    color : #999;
+}
+
+/*
+    APP WIDE
+*/
+.SearchApp-brand {
+    font-size: 18px;
+}
+
+.SearchApp-keyword {
+    color: #f90;
+}
+
+.SearchApp-summary {
+    color: #999;
+}
+
+.SearchApp-indicator {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: #f90;
+
+    animation: pulse 1s linear infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity : 0;
+    }
+}
+
+.SearchForm {
+    margin: 30px -15px;
+}
+
+.SearchForm-query {
+    width: 100%;
+    padding: 6px 12px;
+
+    /*box-shadow: 0 0 3px 0 rgba(0,0,0,0.5);*/
+    outline: none;
+    /*border: none;*/
+    border: 2px solid #ddd;
+    background-color: #eee;
+
+    color: #555;
+    font-size: 20px;
+}
+
+.SearchForm-query:focus {
+    border-color: #f90;
+    background-color: #fff;
+    /*border-color: #999;*/
+    /*box-shadow: 0 0 7px 0 rgba(0,0,0,0.3);*/
+}
+
+.SearchResults-item {
+    margin: 0;
+    padding: 8px 0 8px;
+    display: block;
+}
+
+.SearchResults-name {
+    font-size: 140%;
+}
+
+.SearchResults-author {
+    color: #000;
+}
+
+.SearchResults-desc {
+    font-size: 120%;
+    margin: 0 0 7px;
+}
+
+
+.SearchResults-keywords {
+    overflow:hidden;
+}
+
+.SearchResults-keyword {
+    margin-right: 0.5em;
+    float: right;
+
+    font-size: 90%;
+    /*color: #777;*/
+}
+
+.SearchResults-keyword:hover {
+    color: #000;
+}
+
+.SearchResults-item {
+    border-bottom: 1px solid #eee;
+}
+
+.SearchSummary {
+    margin: 20px 0;
+}
+
+.Button {
+    outline: none;
+    border: 1px solid #eee;
+    background-color: #f9f9f9;
+
+    color: #999;
+    padding: 7px;
+}
+
+.Button.-success {
+    background-color: #4b8;
+
+    color: #fff;
+    text-shadow: 0 0 2px rgba(35, 132, 91, 1);
+    padding: 7px;
+}
+
+.Button.-sm {
+    font-size: 80%;
+}
+
