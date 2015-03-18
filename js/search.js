@@ -89,9 +89,6 @@
             } else {
                 $scope.unsetKeyword();
             }
-            //if ($scope.query) {
-            //    $scope.query = '';
-            //}
             $scope.$apply();
         });
 
